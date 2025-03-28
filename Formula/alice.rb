@@ -10,6 +10,8 @@ class Alice < Formula
     def install
       system "dotnet", "publish", "./alice/alice.csproj", "--use-current-runtime", "--verbosity", "quiet", "--self-contained", "-p:PublishSingleFile=true", "--configuration", "Release", "--output", "bin"
       system "bin/alice", "-e", "Alice.Shell.Init"
+      system "bin/alice", "install", "--args", "https://alice.wsoft.ws/uninstall_unix.ice", "uninstall"
+      system "bin/alice", "install", "--args", "https://alice.wsoft.ws/icebuild.ice", "icebuild"
       bin.install "bin/alice" => "alice"
       bin.install "bin/.alice" => ".alice"
     end
